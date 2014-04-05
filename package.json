@@ -1,0 +1,47 @@
+{
+  "name": "esecurity",
+  "description": "Add security layers to express.",
+  "version": "0.1.2",
+  "author": "Mathieu Naouache <math.nao@outlook.com>",
+  "keywords": [
+    "express",
+    "security",
+    "middleware"
+  ],
+  "engines": {
+    "node": ">=0.6"
+  },
+  "homepage": "https://github.com/math-nao/esecurity/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/math-nao/esecurity.git"
+  },
+  "bugs": {
+    "url": "http://github.com/math-nao/esecurity/issues"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+        "type": "MIT",
+        "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "main": "index",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "express": "3.0.x",
+    "supertest": "0.6.x",
+    "should": "*",
+    "mocha": "*",
+    "dox": "*"
+  },
+  "dependencies": {
+    "generic-pool": "2.x"
+  },
+  "scripts": {
+    "test": "make"
+  }
+}
+
