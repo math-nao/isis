@@ -1,7 +1,7 @@
 {
-  "name": "esecurity",
-  "description": "Add security layers to express.",
-  "version": "0.1.2",
+  "name": "is",
+  "description": "A simple way to check input data.",
+  "version": "0.1.0",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
   "keywords": [
     "express",
@@ -11,13 +11,13 @@
   "engines": {
     "node": ">=0.6"
   },
-  "homepage": "https://github.com/math-nao/esecurity/",
+  "homepage": "https://github.com/math-nao/is/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/math-nao/esecurity.git"
+    "url": "git://github.com/math-nao/is.git"
   },
   "bugs": {
-    "url": "http://github.com/math-nao/esecurity/issues"
+    "url": "http://github.com/math-nao/is/issues"
   },
   "license": "MIT",
   "licenses": [
@@ -29,6 +29,10 @@
   "main": "index",
   "directories": {
     "lib": "lib"
+  },
+  "scripts": {
+    "preinstall": "npm list karma -g || npm install -g karma;",
+    "test": "make test"
   },
   "devDependencies": {
     "express": "3.0.x",
