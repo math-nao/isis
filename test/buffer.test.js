@@ -10,8 +10,8 @@ describe('IS', function() {
             done();
         });
 
-        it('should work with a number type', function(done) {
-            is(1, 'buffer').should.be.a.Boolean.and.be.true;
+        it('should fail with a number type', function(done) {
+            is(1, 'buffer').should.be.a.Boolean.and.be.false;
             done();
         });
     

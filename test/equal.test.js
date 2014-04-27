@@ -34,16 +34,6 @@ describe('IS', function() {
             is('foo-bar', 'equal(foobar)').should.be.a.Boolean.and.be.false;
             done();
         });
-    
-        it('should work with a boolean type', function(done) {
-            is(true, 'equal(true)').should.be.a.Boolean.and.be.true;
-            done();
-        });
-    
-        it('should fail with a boolean type', function(done) {
-            is(false, 'equal(true)').should.be.a.Boolean.and.be.false;
-            done();
-        });
 
     });
 });

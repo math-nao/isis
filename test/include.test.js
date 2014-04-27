@@ -24,6 +24,16 @@ describe('IS', function() {
             is([1, 3], 'include(2)').should.be.a.Boolean.and.be.false;
             done();
         });
+    
+        it('should work with an array type (multiple)', function(done) {
+            is([1, 2, 3], 'include(2, 3)').should.be.a.Boolean.and.be.true;
+            done();
+        });
+    
+        it('should fail with an array type (multiple)', function(done) {
+            is([1, 3], 'include(2, 3)').should.be.a.Boolean.and.be.false;
+            done();
+        });
 
         it('should fail with an object type', function(done) {
             is({}, 'include(0)').should.be.a.Boolean.and.be.false;

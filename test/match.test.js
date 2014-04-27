@@ -26,7 +26,7 @@ describe('IS', function() {
         });
     
         it('should work with a string type', function(done) {
-            is('- foobar -', 'match(\bfoo[a-z]{3})').should.be.a.Boolean.and.be.true;
+            is('- foobar -', 'match(\\bfoo(?:[a-z]{3}))').should.be.a.Boolean.and.be.true;
             done();
         });
     
@@ -70,8 +70,13 @@ describe('IS', function() {
             done();
         });
 
+        it('should work with a date type', function(done) {
+            is(new Date(), 'match(' + (new Date()).getFullYear() + ')').should.be.a.Boolean.and.be.true;
+            done();
+        });
+
         it('should fail with a date type', function(done) {
-            is(new Date(), 'match(0)').should.be.a.Boolean.and.be.false;
+            is(new Date(), 'match(foobar)').should.be.a.Boolean.and.be.false;
             done();
         });
 

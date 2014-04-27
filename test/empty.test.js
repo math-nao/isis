@@ -3,25 +3,10 @@ var is = require('../index.js')
 
 describe('IS', function() {
     
-    describe('argument object', function() {
+    describe('empty', function() {
 
-        it('should work with a number type (integer)', function(done) {
-            is(0, 'empty').should.be.a.Boolean.and.be.true;
-            done();
-        });
-
-        it('should fail with a number type (integer)', function(done) {
-            is(1, 'empty').should.be.a.Boolean.and.be.false;
-            done();
-        });
-
-        it('should work with a number type (float)', function(done) {
-            is(0.0, 'empty').should.be.a.Boolean.and.be.true;
-            done();
-        });
-
-        it('should fail with a number type (float)', function(done) {
-            is(1.1, 'empty').should.be.a.Boolean.and.be.false;
+        it('should fail with a number type', function(done) {
+            is(0, 'empty').should.be.a.Boolean.and.be.false;
             done();
         });
     

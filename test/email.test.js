@@ -6,7 +6,7 @@ describe('IS', function() {
     describe('email', function() {
 
         it('should fail with a number type', function(done) {
-            is(1, 'email').should.be.a.Boolean.and.be.true;
+            is(1, 'email').should.be.a.Boolean.and.be.false;
             done();
         });
     
@@ -32,11 +32,6 @@ describe('IS', function() {
     
         it('should work with a string type (plus)', function(done) {
             is('johndoe+notes@example.com', 'email').should.be.a.Boolean.and.be.true;
-            done();
-        });
-    
-        it('should fail with a string type (first char)', function(done) {
-            is('+johndoe@example.com', 'email').should.be.a.Boolean.and.be.false;
             done();
         });
     

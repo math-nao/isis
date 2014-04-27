@@ -6,12 +6,12 @@ describe('IS', function() {
     describe('float', function() {
 
         it('should work with a number type (positive float)', function(done) {
-            is(1.234, 'float').should.be.a.Boolean.and.be.false;
+            is(1.234, 'float').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (negative float)', function(done) {
-            is(-1.234, 'float').should.be.a.Boolean.and.be.false;
+            is(-1.234, 'float').should.be.a.Boolean.and.be.true;
             done();
         });
 

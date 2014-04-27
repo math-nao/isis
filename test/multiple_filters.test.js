@@ -40,5 +40,15 @@ describe('IS', function() {
             is(data3, 'string,length(6,7),email').should.be.a.Boolean.and.be.false;
             done();
         });
+
+        it('should work with invalid data #4', function(done) {
+            is('- foobar -', 'string,match(\\bfoo(?:[a-z]{3})),length(6,12)').should.be.a.Boolean.and.be.true;
+            done();
+        });
+
+        it('should work with invalid data #5', function(done) {
+            is('- (foo)bar -', 'string,contain(\\)),length(6,12)').should.be.a.Boolean.and.be.true;
+            done();
+        });
     });
 });

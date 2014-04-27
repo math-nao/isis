@@ -41,12 +41,12 @@ describe('IS', function() {
         });
         
         it('should work with a string type (american express)', function(done) {
-            is('3412345678901234', 'creditcard').should.be.a.Boolean.and.be.true;
+            is('341234567890123', 'creditcard').should.be.a.Boolean.and.be.true;
             done();
         });
         
         it('should fail with a string type (american express)', function(done) {
-            is('3512345678901234', 'creditcard').should.be.a.Boolean.and.be.false;
+            is('351234567890123', 'creditcard').should.be.a.Boolean.and.be.false;
             done();
         });
         

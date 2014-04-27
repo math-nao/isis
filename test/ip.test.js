@@ -6,7 +6,7 @@ describe('IS', function() {
     describe('ip', function() {
 
         it('should fail with a number type', function(done) {
-            is(1, 'ip').should.be.a.Boolean.and.be.true;
+            is(1, 'ip').should.be.a.Boolean.and.be.false;
             done();
         });
     

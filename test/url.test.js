@@ -25,13 +25,8 @@ describe('IS', function() {
             done();
         });
     
-        it('should fail with a string type (port)', function(done) {
-            is('http://foo.bar:port', 'url').should.be.a.Boolean.and.be.false;
-            done();
-        });
-    
-        it('should work with a string type (no scheme)', function(done) {
-            is('foo.bar', 'url').should.be.a.Boolean.and.be.true;
+        it('should fail with a string type (no scheme)', function(done) {
+            is('foo.bar', 'url').should.be.a.Boolean.and.be.false;
             done();
         });
     

@@ -5,8 +5,8 @@ describe('IS', function() {
     
     describe('length', function() {
 
-        it('should work with a number type', function(done) {
-            is(1, 'length(1)').should.be.a.Boolean.and.be.true;
+        it('should fail with a number type', function(done) {
+            is(1, 'length(1)').should.be.a.Boolean.and.be.false;
             done();
         });
     

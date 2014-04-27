@@ -6,21 +6,21 @@ describe('IS', function() {
     describe('alphanum', function() {
 
         it('should work with a string type (alphanum uppercase)', function(done) {
-            is('0123456789ABCDEF', 'alphanum').should.be.a.Boolean.and.be.true;
+            is('0123456789ABCDEFGHIJKLMOPQRSTUVWXYZ', 'alphanum').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a string type (alphanum lowercase)', function(done) {
-            is('0123456789abcdef', 'alphanum').should.be.a.Boolean.and.be.true;
+            is('0123456789abcdefghijklmopqrstuvwxyz', 'alphanum').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should fail with a string type (non alphanum)', function(done) {
-            is('0123456789abcdefg', 'alphanum').should.be.a.Boolean.and.be.false;
+            is('0123456789abcdefghijklmopqrstuvwxyz@', 'alphanum').should.be.a.Boolean.and.be.false;
             done();
         });
 
-        it('should fail with a number type (positive integer)', function(done) {
+        it('should fail with a number type', function(done) {
             is(1, 'alphanum').should.be.a.Boolean.and.be.false;
             done();
         });

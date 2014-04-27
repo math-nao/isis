@@ -25,8 +25,18 @@ describe('IS', function() {
             done();
         });
     
+        it('should work with an object type (multiple keys)', function(done) {
+            is({ 'a': 1, 'b': 2, 'c': 3 }, 'key(a,b,c)').should.be.a.Boolean.and.be.true;
+            done();
+        });
+    
         it('should fail with an object type', function(done) {
             is({}, 'key(toString)').should.be.a.Boolean.and.be.false;
+            done();
+        });
+    
+        it('should fail with an object type (multiple keys)', function(done) {
+            is({ 'a': 1, 'b': 2, 'c': 3 }, 'key(a,b,c,d)').should.be.a.Boolean.and.be.false;
             done();
         });
     

@@ -1,6 +1,6 @@
 {
-  "name": "is",
-  "description": "A simple way to check input data.",
+  "name": "isis",
+  "description": "A simple framework for data validation.",
   "version": "0.1.0",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
   "keywords": [
@@ -31,21 +31,14 @@
     "lib": "lib"
   },
   "scripts": {
-    "preinstall": "npm list karma -g || npm install -g karma;",
     "test": "make test"
   },
   "devDependencies": {
-    "express": "3.0.x",
-    "supertest": "0.6.x",
     "should": "*",
-    "mocha": "*",
-    "dox": "*"
+    "mocha": "*"
   },
   "dependencies": {
-    "generic-pool": "2.x"
-  },
-  "scripts": {
-    "test": "make"
+
   }
 }
 

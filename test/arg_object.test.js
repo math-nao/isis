@@ -3,7 +3,7 @@ var is = require('../index.js')
 
 describe('IS', function() {
     
-    describe('object', function() {
+    describe('arg_object', function() {
 
         it('should work with an argument object type', function(done) {
             is(arguments, 'arg_object').should.be.a.Boolean.and.be.true;
