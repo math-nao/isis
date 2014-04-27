@@ -6,22 +6,22 @@ describe('IS', function() {
     describe('lng', function() {
 
         it('should work with a number type (positive integer)', function(done) {
-            is(100, 'lng').should.be.a.Boolean.and.be.true;
+            is(122, 'lng').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (negative integer)', function(done) {
-            is(-100, 'lng').should.be.a.Boolean.and.be.true;
+            is(-122, 'lng').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (positive float)', function(done) {
-            is(100.987, 'lng').should.be.a.Boolean.and.be.true;
+            is(122.1430195, 'lng').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (negative float)', function(done) {
-            is(-100.987, 'lng').should.be.a.Boolean.and.be.true;
+            is(-122.1430195, 'lng').should.be.a.Boolean.and.be.true;
             done();
         });
 

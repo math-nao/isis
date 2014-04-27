@@ -6,22 +6,22 @@ describe('IS', function() {
     describe('lat', function() {
 
         it('should work with a number type (positive integer)', function(done) {
-            is(19, 'lat').should.be.a.Boolean.and.be.true;
+            is(37, 'lat').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (negative integer)', function(done) {
-            is(-19, 'lat').should.be.a.Boolean.and.be.true;
+            is(-37, 'lat').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (positive float)', function(done) {
-            is(19.876, 'lat').should.be.a.Boolean.and.be.true;
+            is(37.4418834, 'lat').should.be.a.Boolean.and.be.true;
             done();
         });
 
         it('should work with a number type (negative float)', function(done) {
-            is(-19.876, 'lat').should.be.a.Boolean.and.be.true;
+            is(-37.4418834, 'lat').should.be.a.Boolean.and.be.true;
             done();
         });
 
