@@ -1,4 +1,4 @@
-# Isis [![Build Status](https://secure.travis-ci.org/math-nao/isis.png)](http://travis-ci.org/math-nao/isis)
+# Isis [![Build Status](https://secure.travis-ci.org/math-nao/isis.png)](http://travis-ci.org/math-nao/isis) [![NPM version](https://badge.fury.io/js/isis.svg)](http://badge.fury.io/js/isis)
 
 ![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_Q1.png)
 ![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_X1.png) ![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_H8.png)
