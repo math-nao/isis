@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Isis</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <style>
+      body {
+        font: 16px/1.6 "Helvetica Neue", arial, sans-serif;
+        padding: 60px;
+      }
+      pre { font-size: 14px; line-height: 1.3 }
+      code .init { color: #2F6FAD }
+      code .string { color: #5890AD }
+      code .keyword { color: #8A6343 }
+      code .number { color: #2F6FAD }
+    </style>
+    <script>
+      $(function(){
+        $('code').each(function(){
+          $(this).html(highlight($(this).text()));
+        });
+      });
+
+      function highlight(js) {
+        return js
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/\/\/(.*)/gm, '<span class="comment">//$1</span>')
+          .replace(/('.*')/gm, '<span class="string">$1</span>')
+          .replace(/(\d+\.\d+)/gm, '<span class="number">$1</span>')
+          .replace(/(\d+)/gm, '<span class="number">$1</span>')
+          .replace(/\bnew *(\w+)/gm, '<span class="keyword">new</span> <span class="init">$1</span>')
+          .replace(/\b(function|new|throw|return|var|if|else)\b/gm, '<span class="keyword">$1</span>')
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Isis</h1>
+    <p>The Isis test suite.</p>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>above</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(2, 'above(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer) equal</dt>
+            <dd><pre><code>is(1, 'above(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer) below</dt>
+            <dd><pre><code>is(0, 'above(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.2, 'above(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float) equal</dt>
+            <dd><pre><code>is(1.1, 'above(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float) below</dt>
+            <dd><pre><code>is(1.01, 'above(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'above(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>alphanum</h1>
+          <dl>
+            <dt>should work with a string type (alphanum uppercase)</dt>
+            <dd><pre><code>is('0123456789ABCDEFGHIJKLMOPQRSTUVWXYZ', 'alphanum').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (alphanum lowercase)</dt>
+            <dd><pre><code>is('0123456789abcdefghijklmopqrstuvwxyz', 'alphanum').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (non alphanum)</dt>
+            <dd><pre><code>is('0123456789abcdefghijklmopqrstuvwxyz@', 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>arguments</h1>
+          <dl>
+            <dt>should work with an argument object type</dt>
+            <dd><pre><code>is(arguments, 'arguments').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'arguments').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>array</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an array type</dt>
+            <dd><pre><code>is([], 'array').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>below</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(0, 'below(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer) equal</dt>
+            <dd><pre><code>is(1, 'below(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer) above</dt>
+            <dd><pre><code>is(2, 'below(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.01, 'below(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float) equal</dt>
+            <dd><pre><code>is(1.1, 'below(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float) above</dt>
+            <dd><pre><code>is(1.2, 'below(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'below(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>boolean</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a boolean type (true value)</dt>
+            <dd><pre><code>is(true, 'boolean').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a boolean type (false value)</dt>
+            <dd><pre><code>is(false, 'boolean').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'boolean').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>buffer</h1>
+          <dl>
+            <dt>should work with a buffer type</dt>
+            <dd><pre><code>is(new Buffer(8), 'buffer').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'buffer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>contain</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(1, 'contain(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer)</dt>
+            <dd><pre><code>is(2, 'contain(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.1, 'contain(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float)</dt>
+            <dd><pre><code>is(1.2, 'contain(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('- foobar -', 'contain(foobar)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foo', 'contain(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (equal)</dt>
+            <dd><pre><code>is('foobar', 'contain(foobar)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'contain(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'contain(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'contain(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'contain(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'contain(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'contain(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'contain(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'contain(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>creditcard</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (new visa card)</dt>
+            <dd><pre><code>is('4123456789012345', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (new visa card)</dt>
+            <dd><pre><code>is('9123456789012345', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (old visa card)</dt>
+            <dd><pre><code>is('4123456789012', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (old visa card)</dt>
+            <dd><pre><code>is('9123456789012', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (mastercard)</dt>
+            <dd><pre><code>is('5123456789012345', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (mastercard)</dt>
+            <dd><pre><code>is('512345678901234', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (american express)</dt>
+            <dd><pre><code>is('341234567890123', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (american express)</dt>
+            <dd><pre><code>is('351234567890123', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (diner club)</dt>
+            <dd><pre><code>is('30012345678901', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (diner club)</dt>
+            <dd><pre><code>is('40012345678901', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (discover)</dt>
+            <dd><pre><code>is('4011123456789012', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (discover)</dt>
+            <dd><pre><code>is('40012345678912', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (jcb)</dt>
+            <dd><pre><code>is('213112345678901', 'creditcard').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (jcb)</dt>
+            <dd><pre><code>is('213212345678901', 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'creditcard').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>date</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a date type</dt>
+            <dd><pre><code>is(new Date(), 'date').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'date').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>email</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('johndoe@example.com', 'email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (dot)</dt>
+            <dd><pre><code>is('john.doe@example.com', 'email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (hyphen)</dt>
+            <dd><pre><code>is('john-doe@example.com', 'email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (underscore)</dt>
+            <dd><pre><code>is('john_doe@example.com', 'email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (plus)</dt>
+            <dd><pre><code>is('johndoe+notes@example.com', 'email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (last char)</dt>
+            <dd><pre><code>is('johndoe@example.comm', 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (no @)</dt>
+            <dd><pre><code>is('johndoe-example.com', 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>empty</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(0, 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('', 'empty').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foobar', 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an array type</dt>
+            <dd><pre><code>is([], 'empty').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([1], 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an object type</dt>
+            <dd><pre><code>is({}, 'empty').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({ 'foo': 'bar' }, 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type (true)</dt>
+            <dd><pre><code>is(true, 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type (false)</dt>
+            <dd><pre><code>is(false, 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'empty').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>equal</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(1, 'equal(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer)</dt>
+            <dd><pre><code>is(2, 'equal(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.1, 'equal(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float)</dt>
+            <dd><pre><code>is(1.2, 'equal(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('foobar', 'equal(foobar)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foo-bar', 'equal(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>error</h1>
+          <dl>
+            <dt>should work with an error type</dt>
+            <dd><pre><code>is(new Error(), 'error').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an error type</dt>
+            <dd><pre><code>is(new TypeError(), 'error').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an error type</dt>
+            <dd><pre><code>is({ name: 'Error', message: 'an error occurred' }, 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'error').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>exist</h1>
+          <dl>
+            <dt>should work with a defined variable</dt>
+            <dd><pre><code>is(definedVar, 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a undefined variable</dt>
+            <dd><pre><code>is(undefinedVar, 'exist').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a null value</dt>
+            <dd><pre><code>is(nullVar, 'exist').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (positive integer)</dt>
+            <dd><pre><code>is(1, 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('', 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an array type</dt>
+            <dd><pre><code>is([], 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an object type</dt>
+            <dd><pre><code>is({}, 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a boolean type</dt>
+            <dd><pre><code>is(true, 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a function type</dt>
+            <dd><pre><code>is(function () {}, 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a date type</dt>
+            <dd><pre><code>is(new Date(), 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'exist').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>float</h1>
+          <dl>
+            <dt>should work with a number type (positive float)</dt>
+            <dd><pre><code>is(1.234, 'float').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative float)</dt>
+            <dd><pre><code>is(-1.234, 'float').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (positive integer)</dt>
+            <dd><pre><code>is(1, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (negative integer)</dt>
+            <dd><pre><code>is(-1, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (0 value)</dt>
+            <dd><pre><code>is(0, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>function</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an array type</dt>
+            <dd><pre><code>is([], 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an object type</dt>
+            <dd><pre><code>is({}, 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'function').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'function').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>hexa</h1>
+          <dl>
+            <dt>should work with a string type (hexa uppercase)</dt>
+            <dd><pre><code>is('0123456789ABCDEF', 'hexa').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (hexa lowercase)</dt>
+            <dd><pre><code>is('0123456789abcdef', 'hexa').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (non hexa)</dt>
+            <dd><pre><code>is('0123456789abcdefg', 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (positive integer)</dt>
+            <dd><pre><code>is(1234567890, 'hexa').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (negative integer)</dt>
+            <dd><pre><code>is(-1234567890, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (positive float)</dt>
+            <dd><pre><code>is(1.234567890, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (negative float)</dt>
+            <dd><pre><code>is(-1.234567890, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'hexa').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>imatch</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(1, 'imatch(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer)</dt>
+            <dd><pre><code>is(2, 'imatch(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.1, 'imatch(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float)</dt>
+            <dd><pre><code>is(1.2, 'imatch(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('- FooBar -', 'imatch(\\bfoo[a-z]{3})').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foo', 'imatch(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (equal)</dt>
+            <dd><pre><code>is('foobar', 'imatch(foobar)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'imatch(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'imatch(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'imatch(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'imatch(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'imatch(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'imatch(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a date type</dt>
+            <dd><pre><code>is(new Date(), 'imatch(' + (new Date()).getFullYear() + ')').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'imatch(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'imatch(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>in</h1>
+          <dl>
+            <dt>should work with a number type</dt>
+            <dd><pre><code>is(1, 'in(1, 2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(3, 'in(1, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('1', 'in(1, 2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('3', 'in(1, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([1, 2], 'in(2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'in(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>include</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an array type</dt>
+            <dd><pre><code>is([1, 2, 3], 'include(2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([1, 3], 'include(2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an array type (multiple)</dt>
+            <dd><pre><code>is([1, 2, 3], 'include(2, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an array type (multiple)</dt>
+            <dd><pre><code>is([1, 3], 'include(2, 3)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'include(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>integer</h1>
+          <dl>
+            <dt>should work with a number type (positive integer)</dt>
+            <dd><pre><code>is(1, 'integer').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative integer)</dt>
+            <dd><pre><code>is(-1, 'integer').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (0 value)</dt>
+            <dd><pre><code>is(0, 'integer').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (positive float)</dt>
+            <dd><pre><code>is(1.234, 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (negative float)</dt>
+            <dd><pre><code>is(-1.234, 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'integer').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>ip</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('255.255.255.255', 'ip').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (localhost)</dt>
+            <dd><pre><code>is('127.0.0.1', 'ip').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (private ip)</dt>
+            <dd><pre><code>is('10.0.0.1', 'ip').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (out of range)</dt>
+            <dd><pre><code>is('256.0.0.1', 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (part missing)</dt>
+            <dd><pre><code>is('255.0.1', 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'ip').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>json</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is(JSON.stringify({ 'foo': 'bar' }), 'json').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (empty object)</dt>
+            <dd><pre><code>is('{}', 'json').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (simple quote)</dt>
+            <dd><pre><code>is('{ \'foo\': \'bar\'}', 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'json').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>key</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an object type</dt>
+            <dd><pre><code>is({ 'foo': 'bar' }, 'key(foo)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an object type (multiple keys)</dt>
+            <dd><pre><code>is({ 'a': 1, 'b': 2, 'c': 3 }, 'key(a,b,c)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type (multiple keys)</dt>
+            <dd><pre><code>is({ 'a': 1, 'b': 2, 'c': 3 }, 'key(a,b,c,d)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'key(toString)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>lat</h1>
+          <dl>
+            <dt>should work with a number type (positive integer)</dt>
+            <dd><pre><code>is(37, 'lat').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative integer)</dt>
+            <dd><pre><code>is(-37, 'lat').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (positive float)</dt>
+            <dd><pre><code>is(37.4418834, 'lat').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative float)</dt>
+            <dd><pre><code>is(-37.4418834, 'lat').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (&gt; 90)</dt>
+            <dd><pre><code>is(90.01, 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (&lt; -90)</dt>
+            <dd><pre><code>is(-90.01, 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (&gt; 0)</dt>
+            <dd><pre><code>is('50.123', 'lat').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (&lt; 0)</dt>
+            <dd><pre><code>is('-50.123', 'lat').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'lat').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>least</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(2, 'least(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (integer) equal</dt>
+            <dd><pre><code>is(1, 'least(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer) below</dt>
+            <dd><pre><code>is(0, 'least(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.2, 'least(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (float) equal</dt>
+            <dd><pre><code>is(1.1, 'least(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float) below</dt>
+            <dd><pre><code>is(1.01, 'least(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'least(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>length</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'length(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('foobar', 'length(6)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (within)</dt>
+            <dd><pre><code>is('foobar', 'length(4, 6)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foobar', 'length(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type (within)</dt>
+            <dd><pre><code>is('foobar', 'length(1, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an array type</dt>
+            <dd><pre><code>is(['foo'], 'length(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an array type (within)</dt>
+            <dd><pre><code>is(['foo', 'bar'], 'length(1, 2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'length(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'length(1, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an object type (length = 1)</dt>
+            <dd><pre><code>is({ 'foo': 'bar' }, 'length(1, 2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an object type (length = 2)</dt>
+            <dd><pre><code>is({ 'foo': 'bar', 'foo2': 'bar2' }, 'length(1, 2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with an object type (empty)</dt>
+            <dd><pre><code>is({}, 'length(0)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'length(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type (within)</dt>
+            <dd><pre><code>is({}, 'length(1, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'length(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type (within)</dt>
+            <dd><pre><code>is(true, 'length(0, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'length(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type (within)</dt>
+            <dd><pre><code>is(new RegExp(''), 'length(0, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'length(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type (within)</dt>
+            <dd><pre><code>is(function () {}, 'length(0, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'length(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type (within)</dt>
+            <dd><pre><code>is(new Date(), 'length(0, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'length(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type (within)</dt>
+            <dd><pre><code>is(0 / 0, 'length(0, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>lng</h1>
+          <dl>
+            <dt>should work with a number type (positive integer)</dt>
+            <dd><pre><code>is(122, 'lng').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative integer)</dt>
+            <dd><pre><code>is(-122, 'lng').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (positive float)</dt>
+            <dd><pre><code>is(122.1430195, 'lng').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative float)</dt>
+            <dd><pre><code>is(-122.1430195, 'lng').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (&gt; 180)</dt>
+            <dd><pre><code>is(180.01, 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (&lt; -180)</dt>
+            <dd><pre><code>is(-180.01, 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (&gt; 0)</dt>
+            <dd><pre><code>is('100.123', 'lng').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (&lt; 0)</dt>
+            <dd><pre><code>is('-100.123', 'lng').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'lng').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>match</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(1, 'match(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer)</dt>
+            <dd><pre><code>is(2, 'match(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.1, 'match(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float)</dt>
+            <dd><pre><code>is(1.2, 'match(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('- foobar -', 'match(\\bfoo(?:[a-z]{3}))').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foo', 'match(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (equal)</dt>
+            <dd><pre><code>is('foobar', 'match(foobar)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (empty)</dt>
+            <dd><pre><code>is('', 'match(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'match(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'match(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'match(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'match(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'match(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a date type</dt>
+            <dd><pre><code>is(new Date(), 'match(' + (new Date()).getFullYear() + ')').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'match(foobar)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'match(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>most</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(0, 'most(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (integer) equal</dt>
+            <dd><pre><code>is(1, 'most(1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (integer) above</dt>
+            <dd><pre><code>is(2, 'most(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.01, 'most(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (float) equal</dt>
+            <dd><pre><code>is(1.1, 'most(1.1)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (float) above</dt>
+            <dd><pre><code>is(1.2, 'most(1.1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'most(0)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>multiple filters</h1>
+          <dl>
+            <dt>should work with valid data #1</dt>
+            <dd><pre><code>is(data, 'float,above(2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data on first argument #1</dt>
+            <dd><pre><code>is(data, 'int,above(2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data on second argument #1</dt>
+            <dd><pre><code>is(data, 'float,above(5)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with valid data #2</dt>
+            <dd><pre><code>is(data2, 'int,within(8,10)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data #2</dt>
+            <dd><pre><code>is(data2, 'int,within(3,4)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with valid data #3</dt>
+            <dd><pre><code>is(data3, 'string,length(6,40),email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data #3</dt>
+            <dd><pre><code>is(data3, 'string,length(6,7),email').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with invalid data #4</dt>
+            <dd><pre><code>is('- foobar -', 'string,match(\\bfoo(?:[a-z]{3})),length(6,12)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with invalid data #5</dt>
+            <dd><pre><code>is('- (foo)bar -', 'string,contain(\\)),length(6,12)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>NaN</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'NaN').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'NaN').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>negative</h1>
+          <dl>
+            <dt>should fail with a number type (positive integer)</dt>
+            <dd><pre><code>is(1, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (positive float)</dt>
+            <dd><pre><code>is(1.234, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (0 value)</dt>
+            <dd><pre><code>is(0, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative integer)</dt>
+            <dd><pre><code>is(-1, 'negative').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (negative float)</dt>
+            <dd><pre><code>is(-1.234, 'negative').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'negative').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>number</h1>
+          <dl>
+            <dt>should work with a number type (integer)</dt>
+            <dd><pre><code>is(1, 'number').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (float)</dt>
+            <dd><pre><code>is(1.234, 'number').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'number').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>object</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with an object type</dt>
+            <dd><pre><code>is({}, 'object').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'object').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>positive</h1>
+          <dl>
+            <dt>should work with a number type (positive integer)</dt>
+            <dd><pre><code>is(1, 'positive').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a number type (positive float)</dt>
+            <dd><pre><code>is(1.234, 'positive').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a number type (0 value)</dt>
+            <dd><pre><code>is(0, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (negative integer)</dt>
+            <dd><pre><code>is(-1, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a number type (negative float)</dt>
+            <dd><pre><code>is(-1.234, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'positive').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>prototype calls</h1>
+          <dl>
+            <dt>should work with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.prototype.alphanum('foobar').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.prototype.alphanum('foobar@').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.prototype.above(2, [1]).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.prototype.above(2, [3]).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;contain&quot; assert</dt>
+            <dd><pre><code>is.prototype.contain('foobar', ['foobar']).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;contain&quot; assert</dt>
+            <dd><pre><code>is.prototype.contain('foo', ['foobar']).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;within&quot; assert</dt>
+            <dd><pre><code>is.prototype.within(2, [1, 3]).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;within&quot; assert</dt>
+            <dd><pre><code>is.prototype.within(4, [1, 3]).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;NaN&quot; assert</dt>
+            <dd><pre><code>is.prototype.NaN(0 / 0).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;NaN&quot; assert</dt>
+            <dd><pre><code>is.prototype.NaN(1).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>regexp</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('', 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'regexp').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'regexp').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>string</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type</dt>
+            <dd><pre><code>is('', 'string').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'string').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>url</h1>
+          <dl>
+            <dt>should fail with a number type</dt>
+            <dd><pre><code>is(1, 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (http url)</dt>
+            <dd><pre><code>is('http://foo.bar', 'url').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (https url)</dt>
+            <dd><pre><code>is('http://foo.bar', 'url').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with a string type (port)</dt>
+            <dd><pre><code>is('http://foo.bar:8080', 'url').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type (no scheme)</dt>
+            <dd><pre><code>is('foo.bar', 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with a string type (uri)</dt>
+            <dd><pre><code>is('http://foo.bar:8080/some/uri', 'url').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with a string type</dt>
+            <dd><pre><code>is('foobar', 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an array type</dt>
+            <dd><pre><code>is([], 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with an object type</dt>
+            <dd><pre><code>is({}, 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a boolean type</dt>
+            <dd><pre><code>is(true, 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a regexp type</dt>
+            <dd><pre><code>is(new RegExp(''), 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a function type</dt>
+            <dd><pre><code>is(function () {}, 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a date type</dt>
+            <dd><pre><code>is(new Date(), 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with a NaN type</dt>
+            <dd><pre><code>is(0 / 0, 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>within</h1>
+          <dl>
+            <section class="suite">
+              <h1>with Integer data</h1>
+              <dl>
+                <dt>should work with valid data #1</dt>
+                <dd><pre><code>is(data, 'within(1, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+                <dt>should work with valid data #2</dt>
+                <dd><pre><code>is(data, 'within(2, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+                <dt>should failed with invalid data #1</dt>
+                <dd><pre><code>is(data, 'within(3, 3)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>with Floating data</h1>
+              <dl>
+                <dt>should work with valid data #1</dt>
+                <dd><pre><code>is(data, 'within(1, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+                <dt>should work with valid data #2</dt>
+                <dd><pre><code>is(data, 'within(2.011, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+                <dt>should failed with invalid data #1</dt>
+                <dd><pre><code>is(data, 'within(2.02, 3)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+                <dt>should failed with invalid data #2</dt>
+                <dd><pre><code>is(data, 'within(3, 3)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>with String data</h1>
+              <dl>
+                <dt>should work with valid data #1</dt>
+                <dd><pre><code>is(data, 'within(1, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+                <dt>should work with valid data #2</dt>
+                <dd><pre><code>is(data, 'within(2.011, 3)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+                <dt>should failed with invalid data #1</dt>
+                <dd><pre><code>is(data, 'within(2.02, 3)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+                <dt>should failed with invalid data #2</dt>
+                <dd><pre><code>is(data, 'within(3, 3)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+              </dl>
+            </section>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>year</h1>
+          <dl>
+            <dt>should work with valid data #1</dt>
+            <dd><pre><code>is(data, 'year(19)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with valid data #2</dt>
+            <dd><pre><code>is(data, 'year(21)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with valid data #3</dt>
+            <dd><pre><code>is(data, 'year(18)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data range #1</dt>
+            <dd><pre><code>is(data, 'year(21, 30)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data type #1</dt>
+            <dd><pre><code>is(data.toString(), 'year(18)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data type #1</dt>
+            <dd><pre><code>is(2005, 'year(18)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data type #2</dt>
+            <dd><pre><code>is([], 'year(18)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data type #3</dt>
+            <dd><pre><code>is({}, 'year(18)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    </body>
+</html>

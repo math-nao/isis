@@ -4,20 +4,20 @@
   "version": "0.1.0",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
   "keywords": [
-    "express",
-    "security",
-    "middleware"
+    "util",
+    "validation",
+    "type"
   ],
   "engines": {
     "node": ">=0.6"
   },
-  "homepage": "https://github.com/math-nao/is/",
+  "homepage": "https://github.com/math-nao/isis/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/math-nao/is.git"
+    "url": "git://github.com/math-nao/isis.git"
   },
   "bugs": {
-    "url": "http://github.com/math-nao/is/issues"
+    "url": "http://github.com/math-nao/isis/issues"
   },
   "license": "MIT",
   "licenses": [
@@ -36,9 +36,6 @@
   "devDependencies": {
     "should": "*",
     "mocha": "*"
-  },
-  "dependencies": {
-
   }
 }
 

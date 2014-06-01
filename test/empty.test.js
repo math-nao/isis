@@ -1,5 +1,5 @@
 var should = require('should');
-var is = require('../index.js')
+var is = require('../index.js');
 
 describe('IS', function() {
     
