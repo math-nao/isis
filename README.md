@@ -72,13 +72,13 @@ Asserts that the string|number target contains alphanumerical characters (`[0-9a
 ``` js
     var is = require('isis');
     
-    is('123az', 'alphanum') => true
-    is('123az@', 'alphanum') => false
+    is('123Az', 'alphanum') => true
+    is('123Az@', 'alphanum') => false
 ```
 
 ### arguments
 
-Asserts that the target is an `arguments` object.
+Asserts that the target is an `Arguments` object.
 
 ``` js
     var is = require('isis');
@@ -212,7 +212,7 @@ Asserts that the target is an `Error`.
 
     is(new Error(), 'error') => true
     is(new TypeError(), 'error') => true
-    is({ name. 'Error', message. 'an error occurred' }, 'error') => false
+    is({ name: 'Error', message: 'an error occurred' }, 'error') => false
 ```
 
 ### exist
@@ -252,12 +252,12 @@ Asserts that the target is a `Function`.
 
 ### hexa
 
-Asserts that the string|number target is an hexadecimal.
+Asserts that the string|number target is an hexadecimal (`[0-9a-fA-F]`).
 
 ``` js
     var is = require('isis');
 
-    is('0123456789abcdef', 'hexa') => true
+    is('0123456789aBcdef', 'hexa') => true
     is(123456789, 'hexa') => true
     is('foobar', 'hexa') => false
 ```
@@ -285,9 +285,9 @@ Asserts that the strin|number target matches at least one element in `value` lis
     is(3, 'in(1, 2)') => false
 ```
 
-### include(value)
+### include(value1, value2 ..., valueN)
 
-Asserts that the target include all elements in `value`.
+Asserts that the target include all elements in `value` list.
 
 ``` js
     var is = require('isis');
@@ -326,7 +326,7 @@ Asserts that the target is a JSON notation.
 ``` js
     var is = require('isis');
 
-    is('{"foo"."bar"}', 'json') => true
+    is('{ "foo": "bar" }', 'json') => true
     is('foobar', 'json') => false
 ```
 
@@ -337,7 +337,7 @@ Asserts that the object target has the key `value`.
 ``` js
     var is = require('isis');
 
-    is({ 'foo'. 'bar' }, 'key(foo)') => true
+    is({ 'foo': 'bar' }, 'key(foo)') => true
     is({}, 'key(toString)') => false
 ```
 
@@ -373,7 +373,7 @@ Asserts that the number|string target is within a range or equal to the given va
     is('foobar', 'length(6)') => true
     is('foobar', 'length(4, 6)') => true
     is(['foo', 'bar'], 'length(1, 2)') => true
-    is({ 'foo'. 'bar' }, 'length(1, 2)') => true
+    is({ 'foo': 'bar' }, 'length(1, 2)') => true
     is('foobar', 'length(1)') => false
 ```
 
@@ -494,7 +494,7 @@ Asserts that the target is an url (valid protocol, hostname and pathname).
 ``` js
     var is = require('isis');
 
-    is('http.//foo.bar.8080/some/uri', 'url') => true
+    is('http://foo.bar:8080/some/uri', 'url') => true
     is('foobar', 'url') => false
 ```
 
