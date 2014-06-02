@@ -78,7 +78,7 @@ Asserts that the string|number target contains alphanumerical characters (`[0-9a
 
 ### arguments
 
-Asserts that the target is an `arguments object.
+Asserts that the target is an `arguments` object.
 
 ``` js
     var is = require('isis');
@@ -222,8 +222,10 @@ Asserts that the target is not `undefined` or `null`.
 ``` js
     var is = require('isis');
 
-    is(null, 'exist') => true
-    is('', 'exist') => false
+    is(0, 'exist') => true
+    is('', 'exist') => true
+    is(null, 'exist') => false
+    is(undefined, 'exist') => false
 ```
 
 ### float
