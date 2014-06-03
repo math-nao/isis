@@ -32,7 +32,7 @@ With prototype calls, assertion parameters need to be passed within an array.
 
 ## Multiple assertions
 
-All assertions can be combined in one call. Assert fail if one them fail.
+All assertions can be combined in one call. Assert fail if one of them fail.
 
 ``` js
     var is = require('isis');
