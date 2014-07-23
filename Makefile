@@ -7,7 +7,17 @@ test: test-unit
 
 test-unit:
 	@NODE_ENV=test ./node_modules/.bin/mocha --reporter $(REPORTER) $(MOCHA_OPTS)
-	
+
+test-travis:
+	@NODE_ENV=test node --harmony-generators \
+		node_modules/.bin/istanbul cover \
+		./node_modules/.bin/_mocha \
+		--report lcovonly \
+		-- -u exports \
+		--require should \
+		test \
+		--bail
+
 docs: test-docs
 
 test-docs:

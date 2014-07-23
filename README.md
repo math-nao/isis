@@ -1,8 +1,8 @@
-# Isis [![Build Status](https://secure.travis-ci.org/math-nao/isis.png)](http://travis-ci.org/math-nao/isis) [![NPM version](https://badge.fury.io/js/isis.svg)](http://badge.fury.io/js/isis)
+# Isis [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![License][license-image]][license-url]
 
-![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_Q1.png)
-![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_X1.png) ![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_H8.png)
-![isis hieroglyph](https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_B1.png)
+![isis hieroglyph][hieroglyph1]
+![isis hieroglyph][hieroglyph2] ![isis hieroglyph][hieroglyph3]
+![isis hieroglyph][hieroglyph4]
 
 A simple framework for data validation.
 
@@ -22,12 +22,15 @@ With prototype calls, assertion parameters need to be passed within an array.
 
     is('foobar', 'alphanum') => true
     is.prototype.alphanum('foobar') => true
+    is.alphanum('foobar') => true
 
     is('foobar', 'contain(foobar)') => true
     is.prototype.contain('foobar', ['foobar']) => true
+    is.contain('foobar', ['foobar']) => true
 
     is(2, 'within(1, 3)') => true
     is.prototype.within(2, [1, 3]) => true
+    is.within(2, [1, 3]) => true
 ```
 
 ## Multiple assertions
@@ -141,7 +144,7 @@ Asserts that the string target contains another string.
     var is = require('isis');
 
     is('- foobar -', 'contain(foobar)') => true
-    is('foo', 'contain(foobar)') => false
+    is('- foobar -', 'contain(foobar1)') => false
 ```
 
 ### creditcard
@@ -511,7 +514,7 @@ Asserts that the string|number target is within a range (inclusive).
 
 ### year(value), year(min, max)
 
-Asserts that the date target is greater than or equal to `value` or within a range (inclusive).
+Asserts that the year of the date target is greater than or equal to `value` or within a range (inclusive).
 
 ``` js
     var is = require('isis');
@@ -538,3 +541,16 @@ Tests are given complete coverage of all features.
 
 MIT
 
+[npm-image]: https://img.shields.io/npm/v/isis.svg?style=flat
+[npm-url]: https://npmjs.org/package/isis
+[travis-image]: https://img.shields.io/travis/math-nao/isis/0.2.0.svg?style=flat
+[travis-url]: https://travis-ci.org/math-nao/isis
+[coveralls-image]: https://img.shields.io/coveralls/math-nao/isis.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/math-nao/isis?branch=0.2.0
+[license-image]: http://img.shields.io/npm/l/isis.svg?style=flat
+[license-url]: https://github.com/math-nao/isis/blob/0.2.0/LICENSE
+
+[hieroglyph1]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_Q1.png
+[hieroglyph2]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_X1.png
+[hieroglyph3]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_H8.png
+[hieroglyph4]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_B1.png

@@ -1,7 +1,7 @@
 {
   "name": "isis",
   "description": "A simple framework for data validation.",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
   "keywords": [
     "util",
@@ -34,8 +34,7 @@
     "test": "make test"
   },
   "devDependencies": {
-    "should": "*",
-    "mocha": "*"
+    "should": "4.x",
+    "mocha": "1.x"
   }
 }
-
