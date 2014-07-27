@@ -125,5 +125,14 @@ describe('IS', function() {
             done();
         });
 
+        it('should fail with undefined value', function(done) {
+            is(undefined, 'length(1)').should.be.a.Boolean.and.be.false;
+            done();
+        });
+
+        it('should fail with undefined value (within)', function(done) {
+            is(undefined, 'length(0, 2)').should.be.a.Boolean.and.be.false;
+            done();
+        });
     });
 });

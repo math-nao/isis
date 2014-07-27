@@ -5,12 +5,12 @@ describe('IS', function() {
     
     describe('prototype calls', function() {
 
-        it('should work with "above" assert', function(done) {
+        it('should work with "alphanum" assert', function(done) {
             is.prototype.alphanum('foobar').should.be.a.Boolean.and.be.true;
             done();
         });
 
-        it('should fail with "above" assert', function(done) {
+        it('should fail with "alphanum" assert', function(done) {
             is.prototype.alphanum('foobar@').should.be.a.Boolean.and.be.false;
             done();
         });
