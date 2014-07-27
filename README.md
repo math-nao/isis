@@ -543,12 +543,12 @@ MIT
 
 [npm-image]: https://img.shields.io/npm/v/isis.svg?style=flat
 [npm-url]: https://npmjs.org/package/isis
-[travis-image]: https://img.shields.io/travis/math-nao/isis/0.2.0.svg?style=flat
+[travis-image]: https://img.shields.io/travis/math-nao/isis/0.2.1.svg?style=flat
 [travis-url]: https://travis-ci.org/math-nao/isis
 [coveralls-image]: https://img.shields.io/coveralls/math-nao/isis.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/math-nao/isis?branch=0.2.0
+[coveralls-url]: https://coveralls.io/r/math-nao/isis?branch=0.2.1
 [license-image]: http://img.shields.io/npm/l/isis.svg?style=flat
-[license-url]: https://github.com/math-nao/isis/blob/0.2.0/LICENSE
+[license-url]: https://github.com/math-nao/isis/blob/0.2.1/LICENSE
 
 [hieroglyph1]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_Q1.png
 [hieroglyph2]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_X1.png
