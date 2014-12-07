@@ -1,8 +1,6 @@
 # Saguaro [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![License][license-image]][license-url]
 
-![saguaro hieroglyph][hieroglyph1]
-![saguaro hieroglyph][hieroglyph2] ![saguaro hieroglyph][hieroglyph3]
-![saguaro hieroglyph][hieroglyph4]
+![saguaro picture][picture1]
 
 A simple framework for data validation.
 
@@ -550,7 +548,4 @@ MIT
 [license-image]: http://img.shields.io/npm/l/saguaro.svg?style=flat
 [license-url]: https://github.com/math-nao/saguaro/blob/0.2.1/LICENSE
 
-[hieroglyph1]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_Q1.png
-[hieroglyph2]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_X1.png
-[hieroglyph3]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_H8.png
-[hieroglyph4]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_B1.png
+[picture1]: http://upload.wikimedia.org/wikipedia/en/thumb/1/13/Saguaro_National_Park_Panorama_and_Mountains.jpeg/1920px-Saguaro_National_Park_Panorama_and_Mountains.jpeg
