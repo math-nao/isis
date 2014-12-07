@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Isis</title>
+    <title>Saguaro</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <style>
       body {
@@ -35,8 +35,8 @@
     </script>
   </head>
   <body>
-    <h1>Isis</h1>
-    <p>The Isis test suite.</p>
+    <h1>Saguaro</h1>
+    <p>The Saguaro test suite.</p>
     <section class="suite">
       <h1>IS</h1>
       <dl>
@@ -207,6 +207,25 @@ done();</code></pre></dd>
 done();</code></pre></dd>
             <dt>should fail with a NaN type</dt>
             <dd><pre><code>is(0 / 0, 'array').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>prototype calls</h1>
+          <dl>
+            <dt>should work with basic</dt>
+            <dd><pre><code>is('foobar', 'alphanum').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with basic call</dt>
+            <dd><pre><code>is('foobar@', 'alphanum').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with no filter</dt>
+            <dd><pre><code>is('foobar').should.be.a.Boolean.and.be.true;
 done();</code></pre></dd>
           </dl>
         </section>
@@ -826,6 +845,26 @@ done();</code></pre></dd>
       <h1>IS</h1>
       <dl>
         <section class="suite">
+          <h1>function call filters</h1>
+          <dl>
+            <dt>should work with valid data #1</dt>
+            <dd><pre><code>is(data, function (data) {
+    return data &gt; 0;
+}).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data #1</dt>
+            <dd><pre><code>is(data, function (data) {
+    return !data &gt; 0;
+}).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
           <h1>hexa</h1>
           <dl>
             <dt>should work with a string type (hexa uppercase)</dt>
@@ -1221,6 +1260,46 @@ done();</code></pre></dd>
       <h1>IS</h1>
       <dl>
         <section class="suite">
+          <h1>prototype calls</h1>
+          <dl>
+            <dt>should work with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.alphanum('foobar').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.alphanum('foobar@').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.above(2, [1]).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;above&quot; assert</dt>
+            <dd><pre><code>is.above(2, [3]).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;contain&quot; assert</dt>
+            <dd><pre><code>is.contain('foobar', ['foobar']).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;contain&quot; assert</dt>
+            <dd><pre><code>is.contain('foo', ['foobar']).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;within&quot; assert</dt>
+            <dd><pre><code>is.within(2, [1, 3]).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;within&quot; assert</dt>
+            <dd><pre><code>is.within(4, [1, 3]).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with &quot;NaN&quot; assert</dt>
+            <dd><pre><code>is.NaN(0 / 0).should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should fail with &quot;NaN&quot; assert</dt>
+            <dd><pre><code>is.NaN(1).should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
           <h1>lat</h1>
           <dl>
             <dt>should work with a number type (positive integer)</dt>
@@ -1404,6 +1483,12 @@ done();</code></pre></dd>
 done();</code></pre></dd>
             <dt>should fail with a NaN type (within)</dt>
             <dd><pre><code>is(0 / 0, 'length(0, 2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with undefined value</dt>
+            <dd><pre><code>is(undefined, 'length(1)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should fail with undefined value (within)</dt>
+            <dd><pre><code>is(undefined, 'length(0, 2)').should.be.a.Boolean.and.be.false;
 done();</code></pre></dd>
           </dl>
         </section>
@@ -1655,6 +1740,43 @@ done();</code></pre></dd>
       <h1>IS</h1>
       <dl>
         <section class="suite">
+          <h1>negate filters</h1>
+          <dl>
+            <dt>should work with valid data #1</dt>
+            <dd><pre><code>is(data, 'float,!above(2)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data on first argument #1</dt>
+            <dd><pre><code>is(data, '!int,above(2)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data on second argument #1</dt>
+            <dd><pre><code>is(data, '!float').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with valid data #2</dt>
+            <dd><pre><code>is(data2, '!within(8, 10)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should failed with invalid data #2</dt>
+            <dd><pre><code>is(data2, 'int,!within(3, 4)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with valid data #3</dt>
+            <dd><pre><code>is(data3, 'string,length(6, 40),email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should failed with invalid data #3</dt>
+            <dd><pre><code>is(data3, 'string,!length(6, 7),email').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+            <dt>should work with invalid data #4</dt>
+            <dd><pre><code>is('- foobar -', 'string,match(\\bfoo(?:[a-z]{3})),!length(6, 12)').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+            <dt>should work with invalid data #5</dt>
+            <dd><pre><code>is('- (foo)bar -', 'string,contain(\\)),!length(0, 4)').should.be.a.Boolean.and.be.true;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
           <h1>negative</h1>
           <dl>
             <dt>should fail with a number type (positive integer)</dt>
@@ -1832,10 +1954,10 @@ done();</code></pre></dd>
         <section class="suite">
           <h1>prototype calls</h1>
           <dl>
-            <dt>should work with &quot;above&quot; assert</dt>
+            <dt>should work with &quot;alphanum&quot; assert</dt>
             <dd><pre><code>is.prototype.alphanum('foobar').should.be.a.Boolean.and.be.true;
 done();</code></pre></dd>
-            <dt>should fail with &quot;above&quot; assert</dt>
+            <dt>should fail with &quot;alphanum&quot; assert</dt>
             <dd><pre><code>is.prototype.alphanum('foobar@').should.be.a.Boolean.and.be.false;
 done();</code></pre></dd>
             <dt>should work with &quot;above&quot; assert</dt>
@@ -1987,6 +2109,25 @@ done();</code></pre></dd>
 done();</code></pre></dd>
             <dt>should fail with a NaN type</dt>
             <dd><pre><code>is(0 / 0, 'url').should.be.a.Boolean.and.be.false;
+done();</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>IS</h1>
+      <dl>
+        <section class="suite">
+          <h1>utils calls</h1>
+          <dl>
+            <dt>should work with ascii chars</dt>
+            <dd><pre><code>utils.upperCaseFirst('foobar').should.be.a.String.and.be.equal('Foobar');
+done();</code></pre></dd>
+            <dt>should work with special chars #1</dt>
+            <dd><pre><code>utils.upperCaseFirst('@foobar').should.be.a.String.and.be.equal('@foobar');
+done();</code></pre></dd>
+            <dt>should work with special chars #2</dt>
+            <dd><pre><code>utils.upperCaseFirst(' foobar').should.be.a.String.and.be.equal(' foobar');
 done();</code></pre></dd>
           </dl>
         </section>

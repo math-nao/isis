@@ -1,15 +1,15 @@
-# Isis [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![License][license-image]][license-url]
+# Saguaro [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![License][license-image]][license-url]
 
-![isis hieroglyph][hieroglyph1]
-![isis hieroglyph][hieroglyph2] ![isis hieroglyph][hieroglyph3]
-![isis hieroglyph][hieroglyph4]
+![saguaro hieroglyph][hieroglyph1]
+![saguaro hieroglyph][hieroglyph2] ![saguaro hieroglyph][hieroglyph3]
+![saguaro hieroglyph][hieroglyph4]
 
 A simple framework for data validation.
 
 ## Installation
 
 ```
-  npm install isis
+  npm install saguaro
 ```
 
 ## Assertion call
@@ -18,7 +18,7 @@ All assertions can be called in two way: constructor call or prototype call.
 With prototype calls, assertion parameters need to be passed within an array.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('foobar', 'alphanum') => true
     is.prototype.alphanum('foobar') => true
@@ -38,7 +38,7 @@ With prototype calls, assertion parameters need to be passed within an array.
 All assertions can be combined in one call. Assert fail if one of them fail.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('529419940a585fb2a83765b2ca5cc091', 'string,length(32),hexa') => true
     is('529419940a585fb2a83765b2ca5cc091', 'string,length(31),hexa') => false
@@ -49,7 +49,7 @@ All assertions can be combined in one call. Assert fail if one of them fail.
 Negation of any assertion is supported by the `!` char.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is({}, '!number') => true
 ```
@@ -62,7 +62,7 @@ Negation of any assertion is supported by the `!` char.
 Asserts that the string|number target is above the given value (`> num`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
     
     is(3, 'above(1)') => true
     is(1, 'above(1)') => false
@@ -73,7 +73,7 @@ Asserts that the string|number target is above the given value (`> num`).
 Asserts that the string|number target contains alphanumerical characters (`[0-9a-zA-Z]`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
     
     is('123Az', 'alphanum') => true
     is('123Az@', 'alphanum') => false
@@ -84,7 +84,7 @@ Asserts that the string|number target contains alphanumerical characters (`[0-9a
 Asserts that the target is an `Arguments` object.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     (function () {
         is(arguments, 'arguments') => true
@@ -97,7 +97,7 @@ Asserts that the target is an `Arguments` object.
 Asserts that the target is an `Array`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is([], 'array') => true
     is({}, 'array') => false
@@ -108,7 +108,7 @@ Asserts that the target is an `Array`.
 Asserts that the string|number target is below than the given value (`< num`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(3, 'below(4)') => true
     is(4, 'below(4)') => false
@@ -119,7 +119,7 @@ Asserts that the string|number target is below than the given value (`< num`).
 Asserts that the target is a `Boolean`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(true, 'boolean') => true
     is(1, 'boolean') => false
@@ -130,7 +130,7 @@ Asserts that the target is a `Boolean`.
 Asserts that the target is a `Buffer`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(new Buffer(1234), 'buffer') => true
     is({}, 'buffer') => false
@@ -141,7 +141,7 @@ Asserts that the target is a `Buffer`.
 Asserts that the string target contains another string.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('- foobar -', 'contain(foobar)') => true
     is('- foobar -', 'contain(foobar1)') => false
@@ -152,7 +152,7 @@ Asserts that the string target contains another string.
 Asserts that the string target is a credit card number (Visa, MasterCard, American Express, Diner Club, Discover, JCB).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(/* A valid credit card number */, 'creditcard') => true
     is('foobar', 'creditcard') => false
@@ -163,7 +163,7 @@ Asserts that the string target is a credit card number (Visa, MasterCard, Americ
 Asserts that the target is a `Date`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(new Date(), 'date') => true
     is(1, 'date') => false
@@ -174,7 +174,7 @@ Asserts that the target is a `Date`.
 Asserts that the string target is an email.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('johndoe@example.com', 'email') => true
     is('johndoe-example.com', 'email') => false
@@ -185,7 +185,7 @@ Asserts that the string target is an email.
 Asserts that the target is empty.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('', 'empty') => true
     is([], 'empty') => true
@@ -199,7 +199,7 @@ Asserts that the target is empty.
 Asserts that the target is equal to the given `value`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1.01, 'equal(1.01)') => true
     is('foobar', 'equal(foobar)') => true
@@ -211,7 +211,7 @@ Asserts that the target is equal to the given `value`.
 Asserts that the target is an `Error`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(new Error(), 'error') => true
     is(new TypeError(), 'error') => true
@@ -223,7 +223,7 @@ Asserts that the target is an `Error`.
 Asserts that the target is not `undefined` or `null`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(0, 'exist') => true
     is('', 'exist') => true
@@ -236,7 +236,7 @@ Asserts that the target is not `undefined` or `null`.
 Asserts that the number target is a `Float`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1.01, 'float') => true
     is(1, 'float') => false
@@ -247,7 +247,7 @@ Asserts that the number target is a `Float`.
 Asserts that the target is a `Function`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(function () {}, 'function') => true
     is(1, 'function') => false
@@ -258,7 +258,7 @@ Asserts that the target is a `Function`.
 Asserts that the string|number target is an hexadecimal (`[0-9a-fA-F]`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('0123456789aBcdef', 'hexa') => true
     is(123456789, 'hexa') => true
@@ -270,7 +270,7 @@ Asserts that the string|number target is an hexadecimal (`[0-9a-fA-F]`).
 Asserts that the target matches a case insensitive regular expression.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('- FooBar -', 'imatch(\\bfoo[a-z]{3})') => true
     is('foo', 'imatch(foobar)') => false
@@ -281,7 +281,7 @@ Asserts that the target matches a case insensitive regular expression.
 Asserts that the strin|number target matches at least one element in `value` list.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1, 'in(1, 2)') => true
     is('foo', 'in(foo, bar)') => true
@@ -293,7 +293,7 @@ Asserts that the strin|number target matches at least one element in `value` lis
 Asserts that the target include all elements in `value` list.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is([1, 2, 3], 'include(2)') => true
     is([1, 2, 3], 'include(2, 3)') => true
@@ -305,7 +305,7 @@ Asserts that the target include all elements in `value` list.
 Asserts that the target is an `Integer`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1, 'integer') => true
     is(1.01, 'integer') => false
@@ -316,7 +316,7 @@ Asserts that the target is an `Integer`.
 Asserts that the target is an ip.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('255.255.255.255', 'ip') => true
     is('256.255.255.255', 'ip') => false
@@ -327,7 +327,7 @@ Asserts that the target is an ip.
 Asserts that the target is a JSON notation.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('{ "foo": "bar" }', 'json') => true
     is('foobar', 'json') => false
@@ -338,7 +338,7 @@ Asserts that the target is a JSON notation.
 Asserts that the object target has the key `value`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is({ 'foo': 'bar' }, 'key(foo)') => true
     is({}, 'key(toString)') => false
@@ -349,7 +349,7 @@ Asserts that the object target has the key `value`.
 Asserts that the number|string target is a latitude value.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(37.4418834, 'lat') => true
     is(90.01, 'lat') => false
@@ -360,7 +360,7 @@ Asserts that the number|string target is a latitude value.
 Asserts that the number|string target is greater than or equal to the given value (`>= num`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1, 'least(1)') => true
     is(0.9, 'least(1)') => false
@@ -371,7 +371,7 @@ Asserts that the number|string target is greater than or equal to the given valu
 Asserts that the number|string target is within a range or equal to the given value `min`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('foobar', 'length(6)') => true
     is('foobar', 'length(4, 6)') => true
@@ -385,7 +385,7 @@ Asserts that the number|string target is within a range or equal to the given va
 Asserts that the number|string target is a longitude value.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(-122.1430195, 'lng') => true
      is(180.01, 'lng') => false
@@ -396,7 +396,7 @@ Asserts that the number|string target is a longitude value.
 Asserts that the number|string target matches a regular expression.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('- fooBar -', 'match(\\bfoo[a-z]{3})') => true
     is('Foo', 'match(foo)') => false
@@ -407,7 +407,7 @@ Asserts that the number|string target matches a regular expression.
 Asserts that the number target is less than or equal to the given value (`<= num`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1, 'most(1)') => true
     is(1.1, 'most(1)') => false
@@ -418,7 +418,7 @@ Asserts that the number target is less than or equal to the given value (`<= num
 Asserts that the target is an illegal number (`NaN`).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(0 / 0, 'NaN') => true
     is(1, 'NaN') => false
@@ -429,7 +429,7 @@ Asserts that the target is an illegal number (`NaN`).
 Asserts that the number target is a negative `Number`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(-1, 'negative') => true
     is(0, 'negative') => false
@@ -440,7 +440,7 @@ Asserts that the number target is a negative `Number`.
 Asserts that the target is a `Number`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(123, 'number') => true
     is('foobar', 'number') => false
@@ -451,7 +451,7 @@ Asserts that the target is a `Number`.
 Asserts that the target is an `Object`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is({}, 'object') => true
     is([], 'object') => false
@@ -462,7 +462,7 @@ Asserts that the target is an `Object`.
 Asserts that the number target is a positive `Number`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(1, 'positive') => true
     is(0, 'positive') => false
@@ -473,7 +473,7 @@ Asserts that the number target is a positive `Number`.
 Asserts that the target is a regular expression.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(/foobar/, 'regexp') => true
     is(1, 'regexp') => false
@@ -484,7 +484,7 @@ Asserts that the target is a regular expression.
 Asserts that the target is a `String`.
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('foobar', 'string') => true
     is(1, 'string') => false
@@ -495,7 +495,7 @@ Asserts that the target is a `String`.
 Asserts that the target is an url (valid protocol, hostname and pathname).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is('http://foo.bar:8080/some/uri', 'url') => true
     is('foobar', 'url') => false
@@ -506,7 +506,7 @@ Asserts that the target is an url (valid protocol, hostname and pathname).
 Asserts that the string|number target is within a range (inclusive).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     is(2, 'within(2, 3)') => true
     is(1, 'within(2, 3)') => false
@@ -517,7 +517,7 @@ Asserts that the string|number target is within a range (inclusive).
 Asserts that the year of the date target is greater than or equal to `value` or within a range (inclusive).
 
 ``` js
-    var is = require('isis');
+    var is = require('saguaro');
 
     var data = new Date();
     data.setFullYear(data.getFullYear() - 19);
@@ -541,14 +541,14 @@ Tests are given complete coverage of all features.
 
 MIT
 
-[npm-image]: https://img.shields.io/npm/v/isis.svg?style=flat
-[npm-url]: https://npmjs.org/package/isis
-[travis-image]: https://img.shields.io/travis/math-nao/isis/0.2.1.svg?style=flat
-[travis-url]: https://travis-ci.org/math-nao/isis
-[coveralls-image]: https://img.shields.io/coveralls/math-nao/isis.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/math-nao/isis?branch=0.2.1
-[license-image]: http://img.shields.io/npm/l/isis.svg?style=flat
-[license-url]: https://github.com/math-nao/isis/blob/0.2.1/LICENSE
+[npm-image]: https://img.shields.io/npm/v/saguaro.svg?style=flat
+[npm-url]: https://npmjs.org/package/saguaro
+[travis-image]: https://img.shields.io/travis/math-nao/saguaro/0.2.1.svg?style=flat
+[travis-url]: https://travis-ci.org/math-nao/saguaro
+[coveralls-image]: https://img.shields.io/coveralls/math-nao/saguaro.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/math-nao/saguaro?branch=0.2.1
+[license-image]: http://img.shields.io/npm/l/saguaro.svg?style=flat
+[license-url]: https://github.com/math-nao/saguaro/blob/0.2.1/LICENSE
 
 [hieroglyph1]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_Q1.png
 [hieroglyph2]: https://bits.wikimedia.org/static-1.24wmf5/extensions/wikihiero/img/hiero_X1.png

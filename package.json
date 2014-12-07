@@ -1,5 +1,5 @@
 {
-  "name": "isis",
+  "name": "saguaro",
   "description": "A simple framework for data validation.",
   "version": "0.2.1",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
@@ -11,13 +11,13 @@
   "engines": {
     "node": ">=0.6"
   },
-  "homepage": "https://github.com/math-nao/isis/",
+  "homepage": "https://github.com/math-nao/saguaro/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/math-nao/isis.git"
+    "url": "git://github.com/math-nao/saguaro.git"
   },
   "bugs": {
-    "url": "http://github.com/math-nao/isis/issues"
+    "url": "http://github.com/math-nao/saguaro/issues"
   },
   "license": "MIT",
   "licenses": [
