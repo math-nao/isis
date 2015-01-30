@@ -36,7 +36,7 @@ describe('IS', function() {
         });
     
         it('should fail with a string type (last char)', function(done) {
-            is('johndoe@example.comm', 'email').should.be.a.Boolean.and.be.false;
+            is('johndoe@example.comm9', 'email').should.be.a.Boolean.and.be.false;
             done();
         });
     
