@@ -30,8 +30,13 @@ describe('IS', function() {
             done();
         });
     
+        it('should work with an array type', function(done) {
+            is([1, 2, 3], 'in(3, 4, 5)').should.be.a.Boolean.and.be.true;
+            done();
+        });
+    
         it('should fail with an array type', function(done) {
-            is([1, 2], 'in(2)').should.be.a.Boolean.and.be.false;
+            is([1, 2, 3], 'in(4, 5)').should.be.a.Boolean.and.be.false;
             done();
         });
 

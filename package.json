@@ -1,7 +1,7 @@
 {
   "name": "saguaro",
   "description": "A simple framework for data validation.",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
   "keywords": [
     "util",

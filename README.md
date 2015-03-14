@@ -12,22 +12,19 @@ A simple framework for data validation.
 
 ## Assertion call
 
-All assertions can be called in two way: constructor call or prototype call.
-With prototype calls, assertion parameters need to be passed within an array.
+All assertions can be called in two way: constructor call or method call.
+With method calls, assertion parameters need to be passed within an array.
 
 ``` js
     var is = require('saguaro');
 
     is('foobar', 'alphanum') => true
-    is.prototype.alphanum('foobar') => true
     is.alphanum('foobar') => true
 
     is('foobar', 'contain(foobar)') => true
-    is.prototype.contain('foobar', ['foobar']) => true
     is.contain('foobar', ['foobar']) => true
 
     is(2, 'within(1, 3)') => true
-    is.prototype.within(2, [1, 3]) => true
     is.within(2, [1, 3]) => true
 ```
 
@@ -276,7 +273,7 @@ Asserts that the target matches a case insensitive regular expression.
 
 ### in(value1, value2 ..., valueN)
 
-Asserts that the strin|number target matches at least one element in `value` list.
+Asserts that the strin|number|array target matches at least one element in `value` list.
 
 ``` js
     var is = require('saguaro');
@@ -284,6 +281,8 @@ Asserts that the strin|number target matches at least one element in `value` lis
     is(1, 'in(1, 2)') => true
     is('foo', 'in(foo, bar)') => true
     is(3, 'in(1, 2)') => false
+    is([1, 2, 3], 'in(3, 4, 5)') => true
+    is([1, 2, 3], 'in(4, 5)') => false
 ```
 
 ### include(value1, value2 ..., valueN)
@@ -541,11 +540,11 @@ MIT
 
 [npm-image]: https://img.shields.io/npm/v/saguaro.svg?style=flat
 [npm-url]: https://npmjs.org/package/saguaro
-[travis-image]: https://img.shields.io/travis/math-nao/saguaro/0.2.3.svg?style=flat
+[travis-image]: https://img.shields.io/travis/math-nao/saguaro/1.0.0.svg?style=flat
 [travis-url]: https://travis-ci.org/math-nao/saguaro
 [coveralls-image]: https://img.shields.io/coveralls/math-nao/saguaro.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/math-nao/saguaro?branch=0.2.3
+[coveralls-url]: https://coveralls.io/r/math-nao/saguaro?branch=1.0.0
 [license-image]: http://img.shields.io/npm/l/saguaro.svg?style=flat
-[license-url]: https://github.com/math-nao/saguaro/blob/0.2.3/LICENSE
+[license-url]: https://github.com/math-nao/saguaro/blob/1.0.0/LICENSE
 
 [picture1]: http://upload.wikimedia.org/wikipedia/en/thumb/1/13/Saguaro_National_Park_Panorama_and_Mountains.jpeg/1920px-Saguaro_National_Park_Panorama_and_Mountains.jpeg
