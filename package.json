@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "should": "4.x",
-    "mocha": "1.x"
+    "mocha": "1.x",
+    "istanbul": "0.x"
   }
 }
