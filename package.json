@@ -1,7 +1,7 @@
 {
   "name": "saguaro",
   "description": "A simple framework for data validation.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Mathieu Naouache <math.nao@outlook.com>",
   "keywords": [
     "util",
@@ -9,7 +9,7 @@
     "type"
   ],
   "engines": {
-    "node": ">=0.6"
+    "node": ">=0.10"
   },
   "homepage": "https://github.com/math-nao/saguaro/",
   "repository": {
@@ -22,8 +22,8 @@
   "license": "MIT",
   "licenses": [
     {
-        "type": "MIT",
-        "url": "http://www.opensource.org/licenses/mit-license.php"
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
   "main": "index",
