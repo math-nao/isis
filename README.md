@@ -547,4 +547,4 @@ MIT
 [license-image]: http://img.shields.io/npm/l/saguaro.svg?style=flat
 [license-url]: https://github.com/math-nao/saguaro/blob/1.0.0/LICENSE
 
-[picture1]: http://upload.wikimedia.org/wikipedia/en/thumb/1/13/Saguaro_National_Park_Panorama_and_Mountains.jpeg/1920px-Saguaro_National_Park_Panorama_and_Mountains.jpeg
+[picture1]: https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Saguaro_National_Park_Panorama_and_Mountains.jpeg/1024px-Saguaro_National_Park_Panorama_and_Mountains.jpeg
