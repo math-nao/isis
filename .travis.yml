@@ -11,7 +11,7 @@ node_js:
 
 script: "make test-travis"
 
-after_script: "npm install coveralls@2.11.1 && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+after_script: "npm install coveralls@2.13.0 && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
 
 notifications:
   email:
