@@ -9,7 +9,7 @@
     "type"
   ],
   "engines": {
-    "node": ">=0.10"
+    "node": ">=4"
   },
   "homepage": "https://github.com/math-nao/saguaro/",
   "repository": {
