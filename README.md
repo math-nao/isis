@@ -525,6 +525,14 @@ Asserts that the year of the date target is greater than or equal to `value` or 
     is(data, 'year(21)') => false
 ```
 
+## Log
+
+To display logs for debug purpose, run your script with `NODE_DEBUG=saguaro` in the environment.
+
+``` js
+    NODE_DEBUG=saguaro node script.js
+```
+
 ## Run Tests
 
 Tests are given complete coverage of all features.
