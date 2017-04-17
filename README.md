@@ -540,11 +540,11 @@ MIT
 
 [npm-image]: https://img.shields.io/npm/v/saguaro.svg?style=flat
 [npm-url]: https://npmjs.org/package/saguaro
-[travis-image]: https://img.shields.io/travis/math-nao/saguaro/1.0.1.svg?style=flat
+[travis-image]: https://img.shields.io/travis/math-nao/saguaro/2.0.0.svg?style=flat
 [travis-url]: https://travis-ci.org/math-nao/saguaro
 [coveralls-image]: https://img.shields.io/coveralls/math-nao/saguaro.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/math-nao/saguaro?branch=1.0.1
+[coveralls-url]: https://coveralls.io/r/math-nao/saguaro?branch=2.0.0
 [license-image]: http://img.shields.io/npm/l/saguaro.svg?style=flat
-[license-url]: https://github.com/math-nao/saguaro/blob/1.0.1/LICENSE
+[license-url]: https://github.com/math-nao/saguaro/blob/master/LICENSE
 
 [picture1]: https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Saguaro_National_Park_Panorama_and_Mountains.jpeg/1024px-Saguaro_National_Park_Panorama_and_Mountains.jpeg

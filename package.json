@@ -34,8 +34,8 @@
     "test": "make test"
   },
   "devDependencies": {
-    "should": "4.x",
-    "mocha": "1.x",
-    "istanbul": "0.x"
+    "istanbul": "0.x",
+    "mocha": "3.x",
+    "should": "4.x"
   }
 }
